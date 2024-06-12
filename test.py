@@ -3,9 +3,19 @@ import openai
 import os
 import pandas as pd
 import dagshub
+from dotenv import load_dotenv
 
+# Load environment variables from the .env file
+load_dotenv()
+
+# Retrieve the OPENAI_API_KEY from the environment
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+# Initialize dagshub
 dagshub.init(repo_owner='presiZHai', repo_name='LLM-Evaluation-with-MLflow-and-Dagshub-for-GenAI-', mlflow=True)
 mlflow.set_tracking_uri("https://dagshub.com/presiZHai/LLM-Evaluation-with-MLflow-and-Dagshub-for-GenAI-.mlflow")
+
+# Prepare the evaluation data
 eval_data = pd.DataFrame(
     {
         "inputs": [
@@ -27,9 +37,13 @@ eval_data = pd.DataFrame(
         ],
     }
 )
+
 mlflow.set_experiment("LLM Evaluation")
+
+# Start an MLflow run
 with mlflow.start_run() as run:
     system_prompt = "Answer the following question in two sentences"
+    
     # Wrap "gpt-4" as an MLflow model.
     logged_model_info = mlflow.openai.log_model(
         model="gpt-4",
@@ -47,12 +61,12 @@ with mlflow.start_run() as run:
         eval_data,
         targets="ground_truth",
         model_type="question-answering",
-        extra_metrics=[mlflow.metrics.toxicity(), mlflow.metrics.latency(),mlflow.metrics.genai.answer_similarity()]
+        extra_metrics=[mlflow.metrics.toxicity(), mlflow.metrics.latency(), mlflow.metrics.genai.answer_similarity()]
     )
     print(f"See aggregated evaluation results below: \n{results.metrics}")
 
     # Evaluation result for each data record is available in `results.tables`.
     eval_table = results.tables["eval_results_table"]
-    df=pd.DataFrame(eval_table)
+    df = pd.DataFrame(eval_table)
     df.to_csv('eval.csv')
     print(f"See evaluation table below: \n{eval_table}")
