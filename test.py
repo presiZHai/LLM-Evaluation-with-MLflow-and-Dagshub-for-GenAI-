@@ -4,8 +4,8 @@ import os
 import pandas as pd
 import dagshub
 
-dagshub.init(repo_owner='krishnaik06', repo_name='MLfLow', mlflow=True)
-mlflow.set_tracking_uri("https://dagshub.com/krishnaik06/MLfLow.mlflow")
+dagshub.init(repo_owner='presiZHai', repo_name='LLM-Evaluation-with-MLflow-and-Dagshub-for-GenAI-', mlflow=True)
+mlflow.set_tracking_uri("https://dagshub.com/presiZHai/LLM-Evaluation-with-MLflow-and-Dagshub-for-GenAI-.mlflow")
 eval_data = pd.DataFrame(
     {
         "inputs": [

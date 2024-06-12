@@ -1,0 +1,15 @@
+artifact_uri: file:///workspaces/LLM-Evaluation-with-MLflow-and-Dagshub-for-GenAI-/mlruns/630383474965402284/2fdffd477e8244f3bf3b92354aab03a1/artifacts
+end_time: 1718187559446
+entry_point_name: ''
+experiment_id: '630383474965402284'
+lifecycle_stage: active
+run_id: 2fdffd477e8244f3bf3b92354aab03a1
+run_name: flawless-crow-611
+run_uuid: 2fdffd477e8244f3bf3b92354aab03a1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1718187532087
+status: 3
+tags: []
+user_id: codespace

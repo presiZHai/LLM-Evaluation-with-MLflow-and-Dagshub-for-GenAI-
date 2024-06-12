@@ -12,3 +12,4 @@ slowapi
 gunicorn
 waitress
 load_dotenv
+dagshub
